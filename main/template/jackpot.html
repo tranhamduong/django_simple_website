@@ -28,9 +28,30 @@
 		<div class="container-contact2">
 			<div class="wrap-contact2">
 				<span class="contact2-form-title">
-						JACKPOT
+					{{ title }}
 				</span>
-				
+				{% if message %}
+				<div class="errorlist">
+					{{ message }}
+				</div>
+				<br/>
+				<form action="{% url 'jackpot' %}" method="POST">
+					{% csrf_token %}
+					<div class="error-message">
+						{{ form.errors }}
+						{{ form.non_field_errors }}	
+					</div>
+					{{ form.as_p }}
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn" type="submit">
+								Search
+							</button>
+						</div>
+					</div>
+				</form>
+				{% endif %}
 				<br/>
 				<div class="wrap-contact2-form-btn">
 					<div class="contact2-form-bgbtn"></div>

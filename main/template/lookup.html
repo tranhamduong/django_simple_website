@@ -21,6 +21,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <!--===============================================================================================-->
+<style>
+	.errorlist {
+  color: red;
+}
+</style>
 </head>
 <body>
 
@@ -30,11 +35,44 @@
 				<span class="contact2-form-title">
 						LOOKUP
 				</span>
-				
+				<div class="errorlist">
+					{{message}}
+				</div>
+				{% if match %}
+				<div class="error-message">
+					<span>Full name: </span>
+					{{match.full_name}}
+					<br/>
+					<span>Phone Number: </span>
+					{{match.phone_number}}
+					<br/>
+					<span>Image:</span>
+					<br/>
+					<a href="{{ match.image.url }}"><img alt="" src="{{ match.image.thumbnail.url }}"/></a>
+					<br/>
+				</div>
+				{% else %}
+				<form action="{% url 'lookup' %}" method="POST">
+					{% csrf_token %}
+					<div class="error-message">
+						{{ form.errors }}
+						{{ form.non_field_errors }}	
+					</div>
+					{{ form.as_p }}
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn" type="submit">
+								Search
+							</button>
+						</div>
+					</div>
+				</form>
+				{% endif %}
 				<br/>
 				<div class="wrap-contact2-form-btn">
 					<div class="contact2-form-bgbtn"></div>
-					<a href = "/jackpot" class="contact2-form-btn">Back to Welcome Page</a>
+					<a href = "/" class="contact2-form-btn">Back to Welcome Page</a>
 				</div>
 			</div>
 		</div>

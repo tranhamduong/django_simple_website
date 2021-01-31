@@ -21,6 +21,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <!--===============================================================================================-->
+<style>
+	.errorlist {
+  color: red;
+}
+</style>
 </head>
 <body>
 
@@ -30,29 +35,28 @@
 				<span class="contact2-form-title">
 						REGISTER
 				</span>
-				<div class="wrap-input2 validate-input" data-validate="Name is required">
-					<input class="input2" type="text" name="full_name">
-					<span class="focus-input2" data-placeholder="Full Name"></span>
+				<div class="error-message">
+					{{message}}
 				</div>
-				<div class="wrap-input2 validate-input" data-validate="Phone number is required">
-					<input class="input2" type="text" name="phone_number">
-					<span class="focus-input2" data-placeholder="Phone Number"></span>
-				</div>
-				<div class="wrap-input3 validate-input upload-btn-wrapper" data-validate="Photo is required">
-					<span for="myfile" class="focus-input2" data-placeholder="Select Photo"></span>
-					<br/>
-					<button class="btn">Upload a file</button>
-					<input type="file" id="myfile" class="form-control input2" name="myfile">
-				</div>				
-				<br/>
-				<div class="container-contact2-form-btn">
-					<div class="wrap-contact2-form-btn">
-						<div class="contact2-form-bgbtn"></div>
-						<button class="contact2-form-btn">
-							Submit
-						</button>
+				
+				<form action="{% url 'register' %}" method="POST" enctype='multipart/form-data'>
+					{% csrf_token %}
+					<div class="error-message">
+						{{ form.errors }}
+						{{ form.non_field_errors }}	
 					</div>
-				</div>
+					{{ form.as_p }}
+					<br/>
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn" type="submit">
+								Submit
+							</button>
+						</div>
+					</div>
+				</form>
+				
 				<br/>
 				<div class="wrap-contact2-form-btn">
 					<div class="contact2-form-bgbtn"></div>
