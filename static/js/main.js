@@ -1,3 +1,13 @@
+(function() {
+    
+    var titles = document.getElementsByTagName("input");
+    var i = titles.length;
+    while (i--) {
+        titles[i].setAttribute("style", "width:100%");
+    }
+ 
+    })();
+
 
 (function ($) {
     "use strict";
@@ -17,15 +27,7 @@
     })
     
         
-    (function() {
-    
-    var titles = document.getElementsByTagName("input");
-    var i = titles.length;
-    while (i--) {
-        titles[i].setAttribute("style", "width:100%");
-    }
- 
-    })();
+
             
   
     
