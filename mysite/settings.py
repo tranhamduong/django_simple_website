@@ -25,7 +25,7 @@ SECRET_KEY = 'x7xytje!$bvg*n@tc674)$%)sm4%jf_!0vja=b@hk$08zi6z(m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "https://faf7984ad3d14f6ab935422f4985e407-3-c821a80-80.vlab.uit.edu.vn"]
 
 
 # Application definition
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'stdimage',
     'main.apps.MainConfig'
 ]
 
